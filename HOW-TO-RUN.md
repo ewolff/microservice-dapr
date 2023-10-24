@@ -104,3 +104,9 @@ postgres | 2023-10-24 11:59:55.251 UTC [1] LOG:  database system is ready to acc
 ## Dashboard
 
 * Run `dapr dashboard` to access the dashboard
+
+## Tracing
+
+* The built-in Zipkin can be accessed at
+  [http://localhost:9411](http://localhost:9411). No further
+  configuration needed.
