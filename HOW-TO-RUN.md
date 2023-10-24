@@ -69,6 +69,23 @@ server runs in the background.
 
 ## Run the application
 
+* Go to the directory `postgres` and start the database:
+
+```
+[~/microservice-dapr/microservice-dapr-demo/postgres]docker-compose up
+Starting postgres ... done
+Attaching to postgres
+postgres |
+postgres | PostgreSQL Database directory appears to contain a database; Skipping initialization
+postgres |
+postgres | 2023-10-24 11:59:55.243 UTC [1] LOG:  starting PostgreSQL 14.0 (Debian 14.0-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+postgres | 2023-10-24 11:59:55.243 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres | 2023-10-24 11:59:55.243 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres | 2023-10-24 11:59:55.246 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres | 2023-10-24 11:59:55.249 UTC [27] LOG:  database system was shut down at 2023-10-24 11:59:48 UTC
+postgres | 2023-10-24 11:59:55.251 UTC [1] LOG:  database system is ready to accept connections
+```
+
 * Go to the directory `microservice-dapr-demo` and start the
   application usind the `dapr` command line tool:
 
