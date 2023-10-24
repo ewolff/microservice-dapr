@@ -100,3 +100,7 @@ postgres | 2023-10-24 11:59:55.251 UTC [1] LOG:  database system is ready to acc
 ```
 
 * Open `index.html`. It contains links to the web applications.
+
+## Dashboard
+
+* Run `dapr dashboard` to access the dashboard
