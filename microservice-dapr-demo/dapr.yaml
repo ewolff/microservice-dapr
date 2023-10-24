@@ -1,0 +1,14 @@
+version: 1
+apps:
+  - appDirPath: ./microservice-dapr-order/
+    appID: order
+    appPort: 8081
+    command: ["java", "-jar", "target/microservice-dapr-order-0.0.1-SNAPSHOT.jar"]
+  - appDirPath: ./microservice-dapr-invoicing/
+    appID: invoicing
+    appPort: 8082
+    command: ["java", "-jar", "target/microservice-dapr-invoicing-0.0.1-SNAPSHOT.jar"]
+  - appDirPath: ./microservice-dapr-shipping/
+    appID: shipping
+    appPort: 8083
+    command: ["java", "-jar", "target/microservice-dapr-shipping-0.0.1-SNAPSHOT.jar"]
