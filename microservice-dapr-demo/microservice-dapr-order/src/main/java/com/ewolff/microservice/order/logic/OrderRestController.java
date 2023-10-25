@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,16 +20,14 @@ import jakarta.servlet.http.HttpServletRequest;
 public class OrderRestController {
 
     private final Logger log = LoggerFactory.getLogger(OrderRestController.class);
+    
+    private String baseUrl = null;
 
     private OrderRepository orderRepository;
 
-    public OrderRestController(OrderRepository orderRepository) {
+    public OrderRestController(OrderRepository orderRepository, @Value("${baseUrl}") String baseUrl) {
         this.orderRepository = orderRepository;
-    }
-
-    private String baseUrl(HttpServletRequest request) {
-        return "%s://%s:%d%s/".formatted(request.getScheme(), request.getServerName(), request.getServerPort(),
-									request.getContextPath());
+        this.baseUrl = baseUrl;
     }
 
     @RequestMapping(value = "/feed", produces = "application/json")
@@ -43,7 +42,7 @@ public class OrderRestController {
         List<OrderFeedEntry> orderFeedEntries = new ArrayList<OrderFeedEntry>();
         for (Order order : orderRepository.findAll()) {
             orderFeedEntries.add(new OrderFeedEntry(order.getId(),
-                    baseUrl(httpRequest) + "order/" + Long.toString(order.getId()), order.getUpdated()));
+                    baseUrl + "order/" + Long.toString(order.getId()), order.getUpdated()));
         }
         OrderFeed orderFeed = new OrderFeed(orderRepository.lastUpdate());
         orderFeed.setOrders(orderFeedEntries);

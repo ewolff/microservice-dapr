@@ -104,10 +104,24 @@ postgres | 2023-10-24 11:59:55.251 UTC [1] LOG:  database system is ready to acc
 ## Dashboard
 
 * Run `dapr dashboard` to access the dashboard
-* `dapr configuration -k` prints out the current configuration
+* `dapr configurations` prints out the current configuration
 
 ## Tracing
 
 * The built-in Zipkin can be accessed at
   [http://localhost:9411](http://localhost:9411). No further
   configuration needed.
+
+## Kubernetes
+
+Not: This will pull the Docker images from the public DockerHub
+repository.
+
+* Install Dapr on Kubernetes as explained
+  [here](https://docs.dapr.io/operations/hosting/kubernetes/kubernetes-deploy/).
+  After installing Dapr CLI (see above) it should be `dapr init -k
+  --dev`.
+* Deploy the infrastructure with `kubectl apply -f infrastructure.yaml`.
+* Run the application using `dapr run -k -f dapr.yaml`.
+* Deploy the services using `kubectl apply -f service.yaml`.
+* Open [http://localhost:80/](http://localhost:80/)

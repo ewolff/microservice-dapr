@@ -1,0 +1,114 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: invoicing
+  name: invoicing
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8082
+    name: http    
+  selector:
+    app: invoicing
+  type: NodePort
+status:
+  loadBalancer: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: shipping
+  name: shipping
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8083
+    name: http    
+  selector:
+    app: shipping
+  type: NodePort
+status:
+  loadBalancer: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: order
+    visualize: "true"
+  name: order
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8081
+    name: http    
+  selector:
+    app: order
+  type: NodePort
+status:
+  loadBalancer: {}
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: order-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /order
+            pathType: Prefix
+            backend:
+              service:
+                name: order
+                port:
+                  number: 80
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: shipping-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /shipping
+            pathType: Prefix
+            backend:
+              service:
+                name: shipping
+                port:
+                  number: 80
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: invoicing-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /invoicing
+            pathType: Prefix
+            backend:
+              service:
+                name: shipping
+                port:
+                  number: 80
