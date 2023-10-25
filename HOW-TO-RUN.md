@@ -124,4 +124,21 @@ repository.
 * Deploy the infrastructure with `kubectl apply -f infrastructure.yaml`.
 * Run the application using `dapr run -k -f dapr.yaml`.
 * Deploy the services using `kubectl apply -f service.yaml`.
-* Open [http://localhost:80/](http://localhost:80/)
+* Open [http://localhost:80/](http://localhost:80/) to use the application.
+
+## Tracing on Kubernetes
+
+* Run the application using `dapr run -k -f dapr.yaml`.
+* Open a portforward from localhost to the Zipkin service in the
+  Kubernetes cluster: `kubectl port-forward service/dapr-dev-zipkin
+  9411:9411`.
+* You can access Zipkin at [http://localhost:9411/](http://localhost:9411/).
+
+Troubleshooting
+
+* Double check that tracing is enabled using `dapr configurations -k`.
+* Double check that the service `dapr-dev-zipkin` is running with
+  `kubectl get services`.
+* You can check the configurations using the dashboard `dapr -k
+  dashboard` and look at the configuration. A Zipkin endpoint should
+  be configured.
