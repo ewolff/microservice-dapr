@@ -10,9 +10,8 @@ Install Docker and [Docker Compose](https://docs.docker.com/compose/install/).
 
 Install [Dapr for your local environment](https://docs.dapr.io/getting-started/install-dapr-selfhost/).
 
-For the sake of this demo, we will use a local environment only. Dapr
-can also run on top of e.g. Kubernetes in a variety of production
-environments.
+For the sake of this demo, we will use a local environment and a
+Kubernetes environment later.
 
 ## Build the Applications
 
