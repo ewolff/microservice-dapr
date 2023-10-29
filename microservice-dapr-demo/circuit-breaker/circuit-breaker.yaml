@@ -1,0 +1,20 @@
+apiVersion: dapr.io/v1alpha1
+kind: Resiliency
+metadata:
+  name: ordercircuitbreaker
+scopes:
+  - shipping
+
+spec:
+  policies:
+    circuitBreakers:
+      simpleCB:
+        maxRequests: 1
+        timeout: 10s 
+        trip: consecutiveFailures >= 2
+
+  targets:
+    apps:
+      order:
+        circuitBreaker: simpleCB
+

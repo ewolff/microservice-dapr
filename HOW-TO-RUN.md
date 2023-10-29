@@ -208,3 +208,20 @@ Troubleshooting
 You can uninstall Grafana with `helm uninstall grafana -n
 dapr-monitoring` and Prometheus with `helm uninstall dapr-prom -n
 dapr-monitoring`.
+
+## Resilience: Circuit Breaker
+
+We will run the shipping microservices with a circuit breaker. As the
+shipping microservice will be unable to access the order microservice,
+the circuit breaker will trip. This will run locally i.e. without
+Kubernetes.
+
+* Start the shipping microservices with the circuit breaker enabled:
+  `./shipping-circuit-breaker.sh`
+* Create some load ` ./load.sh "-X POST http://localhost:8083/poll"`
+* Not how the circuit breaker will be in half-open state after some
+  time during the next polling and then again in open state.
+* Run the order microservice: `dapr run -f dapr-order.yaml`
+* Now the circuit break should change from half-open to close now.
+
+
