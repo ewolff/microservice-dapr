@@ -187,4 +187,9 @@ at the Dapr website.
 
 Troubleshooting
 
-* Double check that matrics are enabled using `dapr configurations -k`.
+* Double check that matrics are enabled using `dapr configurations
+  -k`.
+  
+You can uninstall Grafana with `helm uninstall grafana -n
+dapr-monitoring` and Prometheus with `helm uninstall dapr-prom -n
+dapr-monitoring`.
