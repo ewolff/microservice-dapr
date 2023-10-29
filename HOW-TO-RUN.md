@@ -225,4 +225,13 @@ Kubernetes.
 * Run the order microservice: `dapr run -f dapr-order.yaml`
 * Now the circuit break should change from half-open to close now.
 
+## Resilience: Retry
 
+* Start the shipping microservices with the circuit breaker enabled:
+  `./shipping-retry.sh`
+* Create some load ` ./load.sh "-X POST http://localhost:8083/poll"`
+* Note that accessing the order microservice is being retried. You will
+  find the output in the terminal window for the shipping microservice.
+* Run the order microservice: `dapr run -f dapr-order.yaml`
+* The log shows that the order service is available again and no more
+  retries occur.

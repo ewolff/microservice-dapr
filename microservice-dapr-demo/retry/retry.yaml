@@ -1,0 +1,20 @@
+apiVersion: dapr.io/v1alpha1
+kind: Resiliency
+metadata:
+  name: orderetry
+scopes:
+  - shipping
+
+spec:
+  policies:
+    retries:
+      retryForever:
+        policy: constant
+        duration: 1s
+        maxRetries: -1 
+
+  targets:
+    apps:
+      order:
+        retry: retryForever
+
