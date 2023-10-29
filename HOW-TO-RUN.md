@@ -141,3 +141,50 @@ Troubleshooting
 * You can check the configurations using the dashboard `dapr -k
   dashboard` and look at the configuration. A Zipkin endpoint should
   be configured.
+
+## Metrics on Kubernetes
+
+* [Install Helm](https://helm.sh/docs/intro/install/)
+* Install Prometheus with `./install-prometheus.sh`.
+* `kubectl get pods -n dapr-monitoring` should output the Prometheus
+  Pods now.
+* Install Grafana with `./install-grafana.sh`.
+* This will output the admin password that we will also need later.
+* Start `grafana.sh` or use `kubectl port-forward svc/grafana 3000:80
+  -n dapr-monitoring` to make Grafana accessible on the local machine.
+* Open [http://localhost:3000](http://localhost:3000).
+* Log in with the user name `admin` and the admin password from above.
+* Configure Prometheus as a datasource
+  * Toggle the menu with the three bars at the top left
+  * Select `Connections`
+  * Select `Add new connection`
+  * Select `Prometheus`
+  * Click on `Add new data source` at the top right.
+  * Select`Dapr` as the `Name`
+  * `Default` should be on.
+  * The `Prometheus server URL` will be
+    `http://dapr-prom-prometheus-server.dapr-monitoring`
+  * Select `Skip TLS Verify`.
+  * Click `Save & Test` to make sure the connection works.
+* You can import Grafana dashboards from the [Dapr
+  project](https://github.com/dapr/dapr/tree/master/grafana). The
+  Sidecar metrics provide some information about the services.
+  * Download the JSON files from the [Dapr
+  project](https://github.com/dapr/dapr/tree/master/grafana).
+  * Go to the [Grafana home page](http://localhost:3000).
+  * Click on `Dashboards`
+  * Click on `New` at the to right.
+  * Click on `Import`
+  * Click on `Upload dashboard JSON file`
+  * Select the downloaded JSON file.
+  * Repeat if you want to import more dashboards.
+* You can now access the dashboards from Home - Dashboard.
+* You can add some load with `./load.sh "-X POST http://localhost/shipping/poll"`
+  
+This is based on the [metrics
+documentation](https://docs.dapr.io/operations/observability/metrics/)
+at the Dapr website.
+
+Troubleshooting
+
+* Double check that matrics are enabled using `dapr configurations -k`.
