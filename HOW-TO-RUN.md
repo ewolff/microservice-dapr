@@ -219,8 +219,9 @@ Kubernetes.
 * Start the shipping microservices with the circuit breaker enabled:
   `./shipping-circuit-breaker.sh`
 * Create some load ` ./load.sh "-X POST http://localhost:8083/poll"`
-* Not how the circuit breaker will be in half-open state after some
-  time during the next polling and then again in open state.
+* Note how the circuit breaker will be in half-open state after some
+  time during the next polling and then again in open state. You will
+  find the output in the terminal window for the shipping microservice.
 * Run the order microservice: `dapr run -f dapr-order.yaml`
 * Now the circuit break should change from half-open to close now.
 
