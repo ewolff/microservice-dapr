@@ -86,10 +86,24 @@ postgres | 2023-10-24 11:59:55.251 UTC [1] LOG:  database system is ready to acc
 ```
 
 * Go to the directory `microservice-dapr-demo` and start the
-  application usind the `dapr` command line tool:
+  order microservice using the `dapr` command line tool:
 
 ```
-[~/microservice-dapr/microservice-dapr-demo]dapr run --run-file dapr.yaml
+[~/microservice-dapr/microservice-dapr-demo]dapr run -f dapr-order.yaml
+...
+== APP - order == 2023-10-29T11:39:13.390Z  INFO 1 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 13 endpoint(s) beneath base path '/actuator'
+== APP - order == 2023-10-29T11:39:13.423Z  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+== APP - order == 2023-10-29T11:39:13.431Z  INFO 1 --- [           main] com.ewolff.microservice.order.OrderApp   : Started OrderApp in 2.634 seconds (process running for 2.865)
+== APP - order == 2023-10-29T11:39:13.525Z  INFO 1 --- [nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+== APP - order == 2023-10-29T11:39:13.525Z  INFO 1 --- [nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+== APP - order == 2023-10-29T11:39:13.526Z  INFO 1 --- [nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+```
+
+* Go to the directory `microservice-dapr-demo` and start the
+  other microservices using the `dapr` command line tool:
+
+```
+[~/microservice-dapr/microservice-dapr-demo]dapr run -f dapr-other.yaml
 ...
 == APP - shipping == 2023-10-24T15:00:46.346+02:00 TRACE 11392 --- [   scheduling-1] c.e.m.shipping.poller.ShippingPoller     : saving shipping 8160289206694953496
 == APP - shipping == 2023-10-24T15:00:46.435+02:00  INFO 11392 --- [   scheduling-1] c.e.m.shipping.ShipmentServiceImpl       : Shipment id 8160289206694953496 already exists - ignored
@@ -121,7 +135,8 @@ repository.
   After installing Dapr CLI (see above) it should be `dapr init -k
   --dev`.
 * Deploy the infrastructure with `kubectl apply -f infrastructure.yaml`.
-* Run the application using `dapr run -k -f dapr.yaml`.
+* Run the order microservices using `dapr run -k -f dapr-order.yaml`.
+* Run the other microservices using `dapr run -k -f dapr-other.yaml`.
 * Deploy the services using `kubectl apply -f service.yaml`.
 * Open [http://localhost:80/](http://localhost:80/) to use the application.
 

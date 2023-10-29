@@ -1,10 +1,5 @@
 version: 1
 apps:
-  - appDirPath: ./microservice-dapr-order/
-    containerImage: ewolff/microservice-dapr-order:latest
-    appID: order
-    appPort: 8081
-    command: ["java", "-jar", "target/microservice-dapr-order-0.0.1-SNAPSHOT.jar"]
   - appDirPath: ./microservice-dapr-invoicing/
     containerImage: ewolff/microservice-dapr-invoicing:latest
     appID: invoicing
