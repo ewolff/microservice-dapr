@@ -131,7 +131,7 @@ repository.
 * Run the application using `dapr run -k -f dapr.yaml`.
 * Open a portforward from localhost to the Zipkin service in the
   Kubernetes cluster: `kubectl port-forward service/dapr-dev-zipkin
-  9411:9411`.
+  9411:9411` or `zipkin.sh`.
 * You can access Zipkin at [http://localhost:9411/](http://localhost:9411/).
 
 Troubleshooting
