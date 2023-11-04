@@ -1,4 +1,4 @@
-name: Build and Publish Docker Images for Other Microservices
+name: Build and Publish Docker Images for Microservices
 
 on:
   push:
