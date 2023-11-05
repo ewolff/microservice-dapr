@@ -124,7 +124,6 @@ postgres | 2023-10-24 11:59:55.251 UTC [1] LOG:  database system is ready to acc
 ## Dashboard
 
 * Run `dapr dashboard` to access the dashboard
-* `dapr configurations` prints out the current configuration
 
 ## Tracing
 
@@ -158,7 +157,7 @@ repository.
 * Open a portforward from localhost to the Zipkin service in the
   Kubernetes cluster: `kubectl port-forward service/dapr-dev-zipkin
   9412:9411` or `zipkin.sh`.
-* You can access Zipkin at [http://localhost:9412/](http://localhost:9411/).
+* You can access Zipkin at [http://localhost:9412/](http://localhost:9412/).
 
 ### Troubleshooting
 
