@@ -147,6 +147,9 @@ repository.
 * Deploy the services using `kubectl apply -f service.yaml`.
 * Start the services proxies with `services-proxy.sh`.
 * Open index.html to use the application.
+* You can access the Dapr Kubernetes dashboard with `dapr dashboard
+  -k`.
+* You can access the Dapr Kubernetes configuration with `dapr configurations -k`. 
 
 ## Tracing on Kubernetes
 
