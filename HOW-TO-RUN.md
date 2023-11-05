@@ -138,7 +138,8 @@ repository.
 * Run the order microservices using `dapr run -k -f dapr-order.yaml`.
 * Run the other microservices using `dapr run -k -f dapr-other.yaml`.
 * Deploy the services using `kubectl apply -f service.yaml`.
-* Open [http://localhost:80/](http://localhost:80/) to use the application.
+* Start the services proxies with `services-proxy.sh`.
+* Open index.html to use the application.
 
 ## Tracing on Kubernetes
 
