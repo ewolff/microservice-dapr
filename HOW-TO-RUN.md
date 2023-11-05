@@ -139,9 +139,6 @@ repository.
 * Run the other microservices using `dapr run -k -f dapr-other.yaml`.
 * Deploy the services using `kubectl apply -f service.yaml`.
 * Open [http://localhost:80/](http://localhost:80/) to use the application.
-* Delete the services using `kubectl delete -f service.yaml`.
-* Delete the infrastructure with `kubectl delete -f infrastructure.yaml`.
-* Delete Dapr on Kubernetes with `dapr uninstall -k`
 
 ## Tracing on Kubernetes
 
@@ -151,7 +148,7 @@ repository.
   9411:9411` or `zipkin.sh`.
 * You can access Zipkin at [http://localhost:9411/](http://localhost:9411/).
 
-Troubleshooting
+### Troubleshooting
 
 * Double check that tracing is enabled using `dapr configurations -k`.
 * Double check that the service `dapr-dev-zipkin` is running with
@@ -211,6 +208,12 @@ Troubleshooting
 You can uninstall Grafana with `helm uninstall grafana -n
 dapr-monitoring` and Prometheus with `helm uninstall dapr-prom -n
 dapr-monitoring`.
+
+## Kubernetes: Cleanup
+
+* Delete the services using `kubectl delete -f service.yaml`.
+* Delete the infrastructure with `kubectl delete -f infrastructure.yaml`.
+* Delete Dapr on Kubernetes with `dapr uninstall -k`
 
 ## Resilience: Circuit Breaker
 
