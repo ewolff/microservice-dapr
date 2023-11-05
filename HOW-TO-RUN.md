@@ -68,6 +68,8 @@ server runs in the background.
 
 ## Run the application
 
+### Start the Postgres database
+
 * Go to the directory `postgres` and start the database:
 
 ```
@@ -85,6 +87,8 @@ postgres | 2023-10-24 11:59:55.249 UTC [27] LOG:  database system was shut down 
 postgres | 2023-10-24 11:59:55.251 UTC [1] LOG:  database system is ready to accept connections
 ```
 
+### Start the order microservice
+
 * Go to the directory `microservice-dapr-demo` and start the
   order microservice using the `dapr` command line tool:
 
@@ -99,8 +103,11 @@ postgres | 2023-10-24 11:59:55.251 UTC [1] LOG:  database system is ready to acc
 == APP - order == 2023-10-29T11:39:13.526Z  INFO 1 --- [nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 ```
 
+### Start the other microservices
+
 * Go to the directory `microservice-dapr-demo` and start the
-  other microservices using the `dapr` command line tool:
+  other microservices (invoicing and shipping) using the `dapr`
+  command line tool:
 
 ```
 [~/microservice-dapr/microservice-dapr-demo]dapr run -f dapr-other.yaml
@@ -228,12 +235,17 @@ Kubernetes.
 
 * Start the shipping microservices with the circuit breaker enabled:
   `./shipping-circuit-breaker.sh`
-* Create some load ` ./load.sh "-X POST http://localhost:8083/poll"`
+* Make sure the Postgres database runs (see above).
+* The shipping microservices will now run without the order
+  microservices. This will lead to each call to order failing. 
+* Create some load `./load.sh "-X POST http://localhost:8083/poll"`
 * Note how the circuit breaker will be in half-open state after some
-  time during the next polling and then again in open state. You will
+  time during the next polling and then again in open state because
+  order is not available. You will
   find the output in the terminal window for the shipping microservice.
 * Run the order microservice: `dapr run -f dapr-order.yaml`
-* Now the circuit break should change from half-open to close now.
+* Now the circuit break should change from half-open to close now
+  because order is available now.
 
 ## Resilience: Retry
 
