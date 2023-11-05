@@ -143,11 +143,12 @@ repository.
 
 ## Tracing on Kubernetes
 
-* Run the application using `dapr run -k -f dapr.yaml`.
+* Run the order microservices using `dapr run -k -f dapr-order.yaml`.
+* Run the other microservices using `dapr run -k -f dapr-other.yaml`.
 * Open a portforward from localhost to the Zipkin service in the
   Kubernetes cluster: `kubectl port-forward service/dapr-dev-zipkin
-  9411:9411` or `zipkin.sh`.
-* You can access Zipkin at [http://localhost:9411/](http://localhost:9411/).
+  9412:9411` or `zipkin.sh`.
+* You can access Zipkin at [http://localhost:9412/](http://localhost:9411/).
 
 ### Troubleshooting
 
@@ -157,6 +158,8 @@ repository.
 * You can check the configurations using the dashboard `dapr -k
   dashboard` and look at the configuration. A Zipkin endpoint should
   be configured.
+* Double check that Dapr is initialized with `dapr init -k
+  --dev`.
 
 ## Metrics on Kubernetes
 
