@@ -139,6 +139,9 @@ repository.
 * Run the other microservices using `dapr run -k -f dapr-other.yaml`.
 * Deploy the services using `kubectl apply -f service.yaml`.
 * Open [http://localhost:80/](http://localhost:80/) to use the application.
+* Delete the services using `kubectl delete -f service.yaml`.
+* Delete the infrastructure with `kubectl delete -f infrastructure.yaml`.
+* Delete Dapr on Kubernetes with `dapr uninstall -k`
 
 ## Tracing on Kubernetes
 
