@@ -198,7 +198,7 @@ repository.
   * Select the downloaded JSON file.
   * Repeat if you want to import more dashboards.
 * You can now access the dashboards from Home - Dashboard.
-* You can add some load with `./load.sh "-X POST http://localhost/shipping/poll"`
+* You can add some load with `./load.sh "-X POST http://localhost:8083/poll"`
   
 This is based on the [metrics
 documentation](https://docs.dapr.io/operations/observability/metrics/)
