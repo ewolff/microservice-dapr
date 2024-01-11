@@ -72,11 +72,6 @@ class OrderController {
 		}
 	}
 
-	@GetMapping("/full-{id}")
-	public ModelAndView full(@PathVariable long id) {
-		return new ModelAndView("order-full", "order", orderRepository.findById(id).get());
-	}
-
 	@PostMapping("/")
 	public ModelAndView post(Order order) {
 		order = orderService.order(order);
