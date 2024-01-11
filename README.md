@@ -19,6 +19,14 @@ How to run
 
 See [How to run](HOW-TO-RUN.md).
 
+Video / Podcast
+--------
+
+Check out the video [Microservices with Dapr](https://www.youtube.com/watch?v=VPkJAG0Zwow) (German with auto-translated subtitles in your preferred language).
+Other formats including a Podcast are available at [Software
+Architektur im
+Stream](https://software-architektur.tv/2023/11/24/folge189.html).
+
 
 Remarks on the Code
 -------------------
